@@ -1,0 +1,116 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+{% block titulo %}Records{% endblock titulo %}
+{% load tags %}
+{% block contenido %}
+
+    <main class="p-5">
+        <header class="page-header text-dark">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto">
+                        <h1><i class="fas fa-file-alt"></i> Records</h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="mt-3">
+
+            <div class="bg-light rounded p-4 mb-3">
+
+                <h3>Filter Records</h3>
+
+                {% crispy filter_form %}
+
+                <div class="text-right">
+                    <a class="btn btn-secondary" href="{% url 'home' %}" type="button">Clean filter</a>
+                    <button class="btn btn-dark" type="submit" form="form">Apply filter</button>
+                </div>
+            </div>
+
+            {% if records %}
+
+                <div class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Records are sorted by entry date.</div>
+
+                <a href="{% url 'exportar_registros_excel' %}?{% param_replace %}" class="btn btn-success" target="_blank"><i class="fas fa-file-excel"></i> Export to Excel</a>
+                <a href="{% url 'exportar_registros_pdf' %}?{% param_replace %}" class="btn btn-danger" target="_blank"><i class="fas fa-file-pdf"></i> Export to PDF</a>
+
+                <div class="table-responsive mt-3">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th class="one-line">#</th>
+                            <th class="one-line">Name</th>
+                            <th class="one-line">Contact</th>
+                            <th class="one-line">Check in</th>
+                            <th class="one-line">Check out</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for record in records %}
+                            <tr>
+                                <td><p>{{ forloop.counter }}</p></td>
+                                <td>
+                                    {% if record.user %}
+                                        <a href="{% url 'ver_cliente' record.user.usuario.id %}" target="_self" class="card-link">{{ record.user.get_full_name }}</a>
+                                    {% else %}
+                                        {{ record.nombre|default:'No especificado' }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if record.user.email %}<a href="mailto:{{ record.user.email }}" target="_blank" class="btn-link">{{ record.user.email }}</a>{% endif %}
+                                    {% if record.user.usuario.telefono %}<br/><a href="tel:+569{{ record.user.usuario.telefono }}" target="_blank" class="btn-link">+569{{ record.user.usuario.telefono }}</a>{% endif %}
+                                    {% if record.telefono %}<br/><a href="tel:+569{{ record.telefono }}" target="_blank" class="btn-link">+569{{ record.telefono }}</a>{% endif %}
+                                </td>
+                                <td><p class="one-line">{{ record.date_from|date }}<br/>{{ record.date_from|time }} hrs.</p></td>
+                                <td><p class="one-line">{% if record.date_until %}{{ record.date_until|date }}<br/>{{ record.date_until|time }} hrs.{% else %}At work{% endif %}</p></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> No Info.</div>
+            {% endif %}
+        </div>
+    </main>
+
+{% endblock contenido %}
+
+{% block javascript %}
+    <script type="text/javascript">
+
+        const fechaDesde = $('#id_fecha_desde');
+        const fechaHasta = $('#id_fecha_hasta');
+        const cliente = $('#id_cliente');
+
+        const notificacionModal = $('#id_notificacion_modal');
+        const tipoNotificacion = $('#id_tipo_notificacion');
+        const clienteNotificacion = $('#id_cliente_notificacion');
+        const tituloModal = $('#id_titulo_enviar_notificacion');
+        const tituloNotificacion = $('#id_titulo_notificacion');
+        const mensajeNotificacion = $('#id_mensaje_notificacion');
+        const formularioNotificacion = $('#id_formulario_notificacion');
+
+        const tipo = $('#id_tipo');
+
+        notificacionModal.on('shown.bs.modal', function (e) {
+
+            tituloModal.html($(e.relatedTarget).data('titulo'));
+            tipoNotificacion.val($(e.relatedTarget).data('tipo'));
+
+            if ($(e.relatedTarget).data('tipo') === 'UNICA') {
+                tipo.html('Única');
+                clienteNotificacion.val($(e.relatedTarget).data('cliente'));
+
+
+            } else if ($(e.relatedTarget).data('tipo') === 'MASIVA') {
+                tipo.html('Masiva');
+                clienteNotificacion.val($(e.relatedTarget).data('cliente'));
+            }
+        });
+    </script>
+{% endblock javascript %}
+

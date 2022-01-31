@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block titulo %}Información Personanl{% endblock titulo %}
+
+{% block contenido %}
+    <main>
+        <header class="page-header bg-primary text-white p-5">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mt-4">
+                        <h1><i class="fas fa-edit" aria-hidden="true"></i> Información Personal</h1>
+                        <div class="text-gray-500 mb-4"><i class="far fa-lightbulb"></i> La información que reemplaces no se podrá recuperar.</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="p-5">
+
+            {% crispy form %}
+
+            <hr class="my-4"/>
+            <div class="d-flex justify-content-between">
+                <a class="btn btn-light" href="{% url 'home' %}" type="button"><i class="fas fa-arrow-left mr-2"></i>Volver</a>
+                <button class="btn btn-primary" type="submit" form="form"><i class="fas fa-check-circle mr-2"></i>Guardar</button>
+            </div>
+        </div>
+    </main>
+{% endblock contenido %}

@@ -1,0 +1,100 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+{% block titulo %}Records{% endblock titulo %}
+{% load tags %}
+{% block contenido %}
+
+    <main class="p-5">
+        <header class="page-header text-dark">
+            <div class="page-header-content">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto">
+                        <h1><i class="fas fa-file-alt"></i> Records</h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="mt-3">
+
+            <div class="bg-light rounded p-4 mb-3">
+
+                <h3>Filter Records</h3>
+
+                {% crispy filter_form %}
+
+                <div class="text-right">
+                    <a class="btn btn-secondary" href="{% url 'records' %}" type="button">Clean filter</a>
+                    <button class="btn btn-dark" type="submit" form="form">Apply filter</button>
+                </div>
+            </div>
+
+            {% if records %}
+
+                <div class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Records are sorted by entry date.</div>
+
+                <a href="{% url 'exportar_registros_excel' %}?{% param_replace %}" class="btn btn-success" target="_blank"><i class="fas fa-file-excel"></i> Export to Excel</a>
+                <a href="{% url 'exportar_registros_pdf' %}?{% param_replace %}" class="btn btn-danger" target="_blank"><i class="fas fa-file-pdf"></i> Export to PDF</a>
+
+                <div class="table-responsive mt-3">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th class="one-line">#</th>
+                            <th class="one-line">Name</th>
+                            <th class="one-line">Contact</th>
+                            <th class="one-line">Locations</th>
+                            <th class="one-line">Worked Hours</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for record in records %}
+                            <tr>
+                                <td><p>{{ forloop.counter }}</p></td>
+                                <td>
+                                    {% if record.user_location.user %}
+                                        <a onclick="seeDetails({{ record.user_location.user.usuario.id }})" class="btn-link">{{ record.user_location.user.get_full_name }}</a>
+                                    {% else %}
+                                        {{ record.nombre|default:'unspecified' }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if record.user_location.user.email %}<a href="mailto:{{ record.user_location.user.email }}" target="_blank" class="btn-link">{{ record.user_location.user.email }}</a>{% endif %}
+                                    {% if record.user_location.user.usuario.telefono %}<br/><a href="tel:+569{{ record.user_location.user.usuario.telefono }}" target="_blank" class="btn-link">+569{{ record.user_location.user.usuario.telefono }}</a>{% endif %}
+                                    {% if record.telefono %}<br/><a href="tel:+569{{ record.telefono }}" target="_blank" class="btn-link">+569{{ record.telefono }}</a>{% endif %}
+                                </td>
+                                <td>
+                                    {% for user_location in record.user_location.user.locations.all %}
+                                        <li class="alert-one-line">{{ user_location.location }}</li>
+                                    {% endfor %}
+                                </td>
+                                <td>{{ record.tempVar|default:'unspecified' }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> No Info.</div>
+            {% endif %}
+        </div>
+    </main>
+
+{% endblock contenido %}
+
+{% block javascript %}
+    <script type="text/javascript">
+
+        function seeDetails(id) {
+            var date_from = $('#id_date_from').val();
+            var date_until = $('#id_date_until').val();
+            var location = $('#id_location').val();
+            var user = id
+
+            window.location.href = "/records-detail/?date_from=" + date_from + "&date_until=" + date_until + "&location=" + location + "&user=" + user;
+        }
+
+    </script>
+{% endblock javascript %}
+
