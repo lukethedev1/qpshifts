@@ -2,6 +2,18 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+class City(models.Model):
+    name = models.CharField('name', max_length=45)
+
+    def __str__(self):
+        return '%s' % self.name
+
+    class Meta:
+        verbose_name = 'location'
+        verbose_name_plural = 'locations'
+        ordering = ['name']
+
+
 class Location(models.Model):
     name = models.CharField('name', max_length=45)
     address = models.CharField('address', max_length=255)
@@ -36,17 +48,16 @@ class Record(models.Model):
     date_until = models.DateTimeField('date_until', blank=True, null=True)
     worked_hours = models.DurationField('worked_hours', blank=True, null=True)
 
-    checkin_latitude = models.DecimalField('check in latitude', max_digits=50, decimal_places=9, blank=True, null=True)
-    checkin_longitude = models.DecimalField('check in longitude', max_digits=50, decimal_places=9, blank=True, null=True)
+    checkin_latitude = models.DecimalField('check in latitude', max_digits=15, decimal_places=9, blank=True, null=True)
+    checkin_longitude = models.DecimalField('check in longitude', max_digits=15, decimal_places=9, blank=True, null=True)
 
-    checkout_latitude = models.DecimalField('check out latitude', max_digits=50, decimal_places=9, blank=True, null=True)
-    checkout_longitude = models.DecimalField('check out longitude', max_digits=50, decimal_places=9, blank=True, null=True)
+    checkout_latitude = models.DecimalField('check out latitude', max_digits=15, decimal_places=9, blank=True, null=True)
+    checkout_longitude = models.DecimalField('check out longitude', max_digits=15, decimal_places=9, blank=True, null=True)
 
     def __str__(self):
         return '%s, %s - %s' % (self.user_location.user, self.date_from, self.date_until)
 
     def calculate_worked_hours(self):
-
         timedelta = None
 
         if self.date_from and self.date_until:
@@ -63,7 +74,6 @@ class Record(models.Model):
         minutes = (seconds % 3600) // 60
         seconds = (seconds % 60)
         return hours, minutes, seconds
-
 
     class Meta:
         verbose_name = 'record'

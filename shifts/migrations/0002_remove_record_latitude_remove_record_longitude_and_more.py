@@ -21,25 +21,25 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='record',
             name='checkin_latitude',
-            field=models.DecimalField(decimal_places=45, default=-20, max_digits=50, verbose_name='check in latitude'),
+            field=models.DecimalField(decimal_places=9, default=-20, max_digits=15, verbose_name='check in latitude'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='record',
             name='checkin_longitude',
-            field=models.DecimalField(decimal_places=45, default=-20, max_digits=50, verbose_name='check in longitude'),
+            field=models.DecimalField(decimal_places=9, default=-20, max_digits=15, verbose_name='check in longitude'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='record',
             name='checkout_latitude',
-            field=models.DecimalField(decimal_places=45, default=-20, max_digits=50, verbose_name='check out latitude'),
+            field=models.DecimalField(decimal_places=9, default=-20, max_digits=15, verbose_name='check out latitude'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='record',
             name='checkout_longitude',
-            field=models.DecimalField(decimal_places=45, default=-20, max_digits=50, verbose_name='check out longitude'),
+            field=models.DecimalField(decimal_places=9, default=-20, max_digits=15, verbose_name='check out longitude'),
             preserve_default=False,
         ),
     ]
