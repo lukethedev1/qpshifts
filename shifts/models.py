@@ -17,7 +17,7 @@ class City(models.Model):
 class Location(models.Model):
     name = models.CharField('name', max_length=45)
     address = models.CharField('address', max_length=255)
-    city = models.IntegerField('city', default=1, null=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, related_name='locations', verbose_name='city')
 
     def __str__(self):
         return '%s, %s' % (self.name, self.address)
