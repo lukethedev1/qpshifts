@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59ed419d-2663-4aa7-aa30-b5e99d36b744" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ts-backend/src/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ts-backend/src/util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,7 +112,7 @@
       <workItem from="1642212492526" duration="250000" />
       <workItem from="1642823100081" duration="178000" />
       <workItem from="1642823327041" duration="7764000" />
-      <workItem from="1642982924359" duration="18710000" />
+      <workItem from="1642982924359" duration="19141000" />
     </task>
     <servers />
   </component>
