@@ -86,13 +86,7 @@ WSGI_APPLICATION = 'QP_Shift.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'qpshifts',
-        'USER': 'postgres',
-        'PASSWORD': '!CU%<8dugydU',
-        'HOST': 'lukethedev1.pythonanywhere.com'
-    }
+    'default': {}
 }
 
 # Password validation
