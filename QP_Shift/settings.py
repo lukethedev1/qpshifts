@@ -91,8 +91,7 @@ DATABASES = {
         'NAME': 'qpshifts',
         'USER': 'postgres',
         'PASSWORD': '!CU%<8dugydU',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'HOST': 'lukethedev1.pythonanywhere.com'
     }
 }
 
