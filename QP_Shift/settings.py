@@ -88,10 +88,10 @@ WSGI_APPLICATION = 'QP_Shift.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'qpshifts',
-        'USER': 'postgres',
-        'PASSWORD': '!CU%<8dugydU',
-        'HOST': 'lukethedev1.pythonanywhere.com'
+        'NAME': 'lukethedev1$qualitypro',
+        'USER': 'lukethedev1',
+        'PASSWORD': 'Lucre1992',
+        'HOST': 'lukethedev1.mysql.pythonanywhere-services.com'
     }
 }
 
