@@ -1,0 +1,73 @@
+.grecaptcha-badge {
+    display: none;
+}
+
+*:focus, .btn.focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.alert-sm {
+    padding: 0.5rem;
+    /*font-size: 85%;*/
+    /*font-weight: bold;*/
+}
+
+.alert-xs {
+    padding: 2px 4px 2px 4px;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+.alert-info {
+    color: #fff;
+    border: none;
+    background: #24c6c8;
+}
+
+.alert-success {
+    color: #fff;
+    border: none;
+    background: #1ab394;
+}
+
+.alert-warning {
+    color: #fff;
+    border: none;
+    background: #f8ac59;
+}
+
+.alert-danger {
+    color: #fff;
+    border: none;
+    background: #ED5565;
+}
+
+.asteriskField {
+    color: red;
+    margin-left: 2px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+.one-line {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.btn-danger {
+    color: #fff;
+    border: none;
+    background-color: #ED5565;
+}
+
+.btn-danger:hover, .btn-danger:active, .btn-danger:focus {
+    color: #fff;
+    border: none !important;
+    background-color: #e03c4c !important;
+}
