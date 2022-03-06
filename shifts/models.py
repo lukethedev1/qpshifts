@@ -9,15 +9,15 @@ class City(models.Model):
         return '%s' % self.name
 
     class Meta:
-        verbose_name = 'location'
-        verbose_name_plural = 'locations'
+        verbose_name = 'city'
+        verbose_name_plural = 'cities'
         ordering = ['name']
 
 
 class Location(models.Model):
     name = models.CharField('name', max_length=45)
     address = models.CharField('address', max_length=255)
-    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, related_name='locations', verbose_name='city')
+    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, blank=True, related_name='locations', verbose_name='city')
 
     def __str__(self):
         return '%s, %s' % (self.name, self.address)

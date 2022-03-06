@@ -22,6 +22,8 @@ class UserLocationSerializer(serializers.ModelSerializer):
 
 class RecordSerializer(serializers.ModelSerializer):
 
+    user_location = UserLocationSerializer()
+
     def create(self, validated_data):
 
         user_location = validated_data.pop('user_location')

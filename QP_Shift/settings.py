@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_@b%o$=+1)ofafdnvkt@k@5%u9o5(((b_&1&!6^t-s(ag!uw@j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['lukethedev1.pythonanywhere.com']
+ALLOWED_HOSTS = ['lukethedev1.pythonanywhere.com', '127.0.0.1']
 
 # Application definition
 
@@ -87,11 +87,12 @@ WSGI_APPLICATION = 'QP_Shift.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lukethedev1$qualitypro',
-        'USER': 'lukethedev1',
-        'PASSWORD': 'Lucre1992',
-        'HOST': 'lukethedev1.mysql.pythonanywhere-services.com'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'qpshifts',
+        'USER': 'postgres',
+        'PASSWORD': '!CU%<8dugydU',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
