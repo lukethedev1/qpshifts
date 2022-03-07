@@ -22,7 +22,7 @@ class UserLocationSerializer(serializers.ModelSerializer):
 
 class RecordSerializer(serializers.ModelSerializer):
 
-    user_location = UserLocationSerializer()
+    user_location = UserLocationSerializer(read_only=True)
 
     def create(self, validated_data):
 
