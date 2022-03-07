@@ -1,6 +1,7 @@
 from rest_framework import serializers
 import datetime
 from django.utils import timezone
+from rest_framework.fields import IntegerField
 
 from shifts.models import UserLocation, Location, Record
 
@@ -23,15 +24,16 @@ class UserLocationSerializer(serializers.ModelSerializer):
 class RecordSerializer(serializers.ModelSerializer):
 
     user_location = UserLocationSerializer(read_only=True)
+    user_location_id = IntegerField(write_only=True)
 
     def create(self, validated_data):
 
-        user_location = validated_data.pop('user_location')
+        user_location = validated_data.pop('user_location_id')
         checkin_latitude = validated_data.pop('checkin_latitude')
         checkin_longitude = validated_data.pop('checkin_longitude')
 
         return Record.objects.create(
-            user_location=user_location,
+            user_location=UserLocation.objects.get(id=user_location),
             checkin_latitude=checkin_latitude,
             checkin_longitude=checkin_longitude
         )
