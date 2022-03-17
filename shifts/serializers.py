@@ -13,7 +13,6 @@ class LocationSerializer(serializers.ModelSerializer):
 
 
 class UserLocationSerializer(serializers.ModelSerializer):
-
     location = LocationSerializer()
 
     class Meta:
@@ -22,24 +21,21 @@ class UserLocationSerializer(serializers.ModelSerializer):
 
 
 class RecordSerializer(serializers.ModelSerializer):
-
     user_location = UserLocationSerializer(read_only=True)
     user_location_id = IntegerField(write_only=True)
 
     def create(self, validated_data):
-
         user_location = validated_data.pop('user_location_id')
         checkin_latitude = validated_data.pop('checkin_latitude')
         checkin_longitude = validated_data.pop('checkin_longitude')
 
         return Record.objects.create(
             user_location=UserLocation.objects.get(id=user_location),
-            checkin_latitude=checkin_latitude,
-            checkin_longitude=checkin_longitude
+            checkin_latitude=float("{0:.9f}".format(checkin_latitude)),
+            checkin_longitude=float("{0:.9f}".format(checkin_longitude))
         )
 
     def update(self, instance, validated_data):
-
         instance.date_until = datetime.datetime.now(tz=timezone.utc)
         instance.checkout_latitude = validated_data.pop('checkout_latitude')
         instance.checkout_longitude = validated_data.pop('checkout_longitude')
