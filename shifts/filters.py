@@ -31,12 +31,12 @@ def get_records(filter_form):
     else:
         tempRecords = []
 
-        for record in records.order_by('user_location__user'):
+        for record in records.order_by('user_location__user').all():
             if len(tempRecords) == 0:
                 record.tempVar = record.user_location.user.usuario.worked_hours(filter_form, record.user_location.user)
                 tempRecords.append(record)
             else:
-                if tempRecords.reverse()[0].user.pk != record.user.pk:
+                if tempRecords.last().user.pk != record.user.pk:
                     record.tempVar = record.user_location.user.usuario.worked_hours(filter_form, record.user_location.user)
                     tempRecords.append(record)
 
