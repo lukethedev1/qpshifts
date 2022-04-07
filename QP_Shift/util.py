@@ -54,7 +54,7 @@ def generar_excel_detalle(records):
 
         correo = ''
 
-        if hasattr(record.user, 'usuario'):
+        if hasattr(record.user_location.user, 'usuario'):
             nombre = record.user_location.user.get_full_name()
             correo = record.user_location.user.email
             telefono = record.user_location.user.usuario.telefono
