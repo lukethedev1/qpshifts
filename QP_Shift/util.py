@@ -55,9 +55,9 @@ def generar_excel_detalle(records):
         correo = ''
 
         if hasattr(record.user, 'usuario'):
-            nombre = record.user.get_full_name()
-            correo = record.user.email
-            telefono = record.user.usuario.telefono
+            nombre = record.user_location.user.get_full_name()
+            correo = record.user_location.user.email
+            telefono = record.user_location.user.usuario.telefono
 
         fecha_ingreso = "{0:%d-%m-%Y %H:%M}".format(obtener_datetime_sin_timezone(record.date_from)) if record.date_from else ''
         fecha_salida = "{0:%d-%m-%Y %H:%M}".format(obtener_datetime_sin_timezone(record.date_until)) if record.date_until else ''
@@ -110,19 +110,19 @@ def generar_excel(records, filter_form):
 
         correo = ''
 
-        if hasattr(record.user, 'usuario'):
-            nombre = record.user.get_full_name()
-            correo = record.user.email
-            telefono = record.user.usuario.telefono
+        if hasattr(record.user_location.user, 'usuario'):
+            nombre = record.user_location.user.get_full_name()
+            correo = record.user_location.user.email
+            telefono = record.user_location.user.usuario.telefono
 
         locations = ""
 
-        for location in record.user.locations.all():
+        for location in record.user_location.user.locations.all():
             locations += location.location.name
-            if not location.location.id == record.user.locations.all().last().id:
+            if not location.location.id == record.user_location.user.locations.all().last().id:
                 locations += ","
 
-        worked_hours = record.user.usuario.worked_hours(filter_form, record.user)
+        worked_hours = record.user_location.user.usuario.worked_hours(filter_form, record.user_location.user)
 
         row_num += 1
 
