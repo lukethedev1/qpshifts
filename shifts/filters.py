@@ -32,6 +32,7 @@ def get_records(filter_form):
         tempRecords = []
 
         for record in records.order_by('user_location__user').values('user_location__user').distinct():
+            print(record)
             record.tempVar = record.user_location.user.usuario.worked_hours(filter_form, record.user_location.user)
             tempRecords.append(record)
 
