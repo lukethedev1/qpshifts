@@ -40,8 +40,6 @@ def get_records(filter_form):
                     record.tempVar = record.user_location.user.usuario.worked_hours(filter_form, record.user_location.user)
                     tempRecords.append(record)
 
-            tempRecords.append(record)
-
         return tempRecords
 
 
