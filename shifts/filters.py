@@ -36,7 +36,7 @@ def get_records(filter_form):
                 record.tempVar = record.user_location.user.usuario.worked_hours(filter_form, record.user_location.user)
                 tempRecords.append(record)
             else:
-                if tempRecords[-1].user.pk != record.user.pk:
+                if tempRecords[-1].user_location.user.pk != record.user_location.user.user.pk:
                     record.tempVar = record.user_location.user.usuario.worked_hours(filter_form, record.user_location.user)
                     tempRecords.append(record)
 
