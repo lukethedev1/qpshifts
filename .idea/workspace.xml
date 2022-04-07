@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59ed419d-2663-4aa7-aa30-b5e99d36b744" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/pdf/registros.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pdf/registros.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pdf/detalle-registros.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pdf/detalle-registros.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ts-backend/src/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ts-backend/src/util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,7 +119,7 @@
       <workItem from="1646484900080" duration="3202000" />
       <workItem from="1647533463428" duration="376000" />
       <workItem from="1649340829297" duration="2364000" />
-      <workItem from="1649348662730" duration="832000" />
+      <workItem from="1649348662730" duration="926000" />
     </task>
     <servers />
   </component>

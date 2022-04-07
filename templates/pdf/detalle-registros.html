@@ -154,15 +154,15 @@
         <tr>
             <td style="width: 35px;{% if forloop.counter|divisibleby:2 %}background-color: #f5f5f5;{% endif %}">{{ forloop.counter }}</td>
             <td style="{% if forloop.counter|divisibleby:2 %}background-color: #f5f5f5;{% endif %}">
-                {% if registro.user.usuario %}
-                    {{ registro.user.get_full_name }}
+                {% if registro.user_location.user.usuario %}
+                    {{ registro.user_location.user.get_full_name }}
                 {% else %}
                     {{ registro.nombre|default:'No especificado' }}
                 {% endif %}
             </td>
             <td style="{% if forloop.counter|divisibleby:2 %}background-color: #f5f5f5;{% endif %}">
-                <a href="mailto:{{ registro.user.email }}" target="_blank" class="btn-link">{{ registro.user.email }}</a>
-                {% if registro.user.usuario.telefono %}<br/><a href="tel:{{ registro.user.usuario.telefono }}" target="_blank" class="btn-link">{{ registro.user.usuario.telefono }}</a>{% endif %}
+                <a href="mailto:{{ registro.user_location.user.email }}" target="_blank" class="btn-link">{{ registro.user_location.user.email }}</a>
+                {% if registro.user_location.user.usuario.telefono %}<br/><a href="tel:{{ registro.user_location.user.usuario.telefono }}" target="_blank" class="btn-link">{{ registro.user_location.user.usuario.telefono }}</a>{% endif %}
             </td>
             <td style="{% if forloop.counter|divisibleby:2 %}background-color: #f5f5f5;{% endif %}"><p>{{ registro.date_from|date:'d/m/Y' }}<br/>{{ registro.date_from|time }} hrs.</p></td>
             <td style="{% if forloop.counter|divisibleby:2 %}background-color: #f5f5f5;{% endif %}"><p>{% if registro.date_until %}{{ registro.date_until|date:'d/m/Y' }}<br/>{{ registro.date_until|time }} hrs.{% else %}At Work{% endif %}</p></td>
